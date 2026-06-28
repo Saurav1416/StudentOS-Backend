@@ -1,10 +1,14 @@
 [
   {
     "name": "sam",
-    "spent": 170
+    "spent": 200
   },
   {
     "name": "health",
-    "spent": 70
+    "spent": 0
+  },
+  {
+    "name": "2",
+    "spent": 0
   }
 ]

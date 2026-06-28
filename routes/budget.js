@@ -3,10 +3,11 @@ const router  = express.Router();
 
 const fs = require('fs');
 const path = require('path');
+const authmiddleware = require('../middleware/authmiddleware');
 
 const budgetFilePath = path.join(__dirname,"..", "budget.json");
 
-router.patch( '/',(req,res)=> {
+router.patch( '/',authmiddleware,(req,res)=> {
     const data = JSON.parse( fs.readFileSync(budgetFilePath,'utf-8', 
     ));
     const {name,spent}= req.body;
@@ -36,7 +37,7 @@ router.patch( '/',(req,res)=> {
      })
 })
 
-router.get("/", (req, res) => {
+router.get("/",authmiddleware, (req, res) => {
   const data = JSON.parse(
     fs.readFileSync(budgetFilePath, "utf-8")
   );
@@ -44,7 +45,7 @@ router.get("/", (req, res) => {
   res.json(data);
 });
 
-router.post("/", (req, res) => {
+router.post("/",authmiddleware, (req, res) => {
     const name = req.body.name
   const data = JSON.parse(
     fs.readFileSync(budgetFilePath, "utf-8")
