@@ -6,5 +6,9 @@
   {
     "name": "health",
     "spent": "200"
+  },
+  {
+    "name": "s",
+    "spent": "1"
   }
 ]

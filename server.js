@@ -6,6 +6,7 @@ const budgetrouter = require('./routes/budget');
 const authrouter = require("./routes/auth");
 const homerouter = require("./routes/home");
 const connectDB = require("./config/db")
+const GEHM = require("./middleware/GlobalErrorHandlerMiddleware")
 
 
 const Port = process.env.PORT || 3000;
@@ -20,8 +21,10 @@ app.use(cors());
 
 
 app.use("/budget", budgetrouter);
-app.use("/", authrouter);0
+app.use("/", authrouter);
 app.use ("/", homerouter);
+
+app.use(GEHM);
 
 
 
