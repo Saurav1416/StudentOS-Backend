@@ -73,4 +73,23 @@ router.post("/",authmiddleware, (req, res) => {
   });
 });
 
+
+router.delete("/", authmiddleware,(req,res)=>{
+
+   const {name,spent}= req.body;
+   const budget = JSON.parse(
+    fs.readFileSync(budgetFilePath, "utf-8"))
+
+ try{
+  const newbudget= budget.filter( (b)=> b.name!=name);
+  fs.writeFileSync(budgetFilePath,JSON.stringify(newbudget,null,2))
+  return res.status(200).json({success:true,message:`${name} was deleted` })  // for delete we use 204 but it has no body so we cant send any message with it so i am using 200 status code
+ }
+ catch(err){
+  return res.status(404).json({success:false,message:"There was some problem deleting the category try again"})
+ }
+
+
+})
+
 module.exports = router ;
